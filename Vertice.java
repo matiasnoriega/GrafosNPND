@@ -1,4 +1,4 @@
-package ar.edu.uno.poo2.modelo
+package ar.edu.uno.poo2.grafos.modelo;
 
 import java.util.*;
 
