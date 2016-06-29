@@ -1,11 +1,7 @@
 package ar.edu.uno.poo2.grafos.modelo;
 
-import java.util.*;
-
 public class Vertice{
 	private Integer numero;
-	private Arista[] aristasSalientes;
-	private Integer grado;
 
 	public Vertice(Integer numero){
 		setNumero(numero);
