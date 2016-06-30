@@ -19,19 +19,14 @@ public class Test {
 
 	public static String analisisEstadistico(Integer dimension, Integer porcentaje){
 		String string = "\n-------------------------------------------------\nAnalisis Estadistico para 1000 Grafos\n-------------------------------------------------\n";
-		Integer menorCantidadDeColores = 100000;
-		Integer[] vectorCantidadColores = new Integer[1000];
-		int[] vectorContadores = new int[15];
+	
+		
+		int[] vectorContadores = new int[20];
 		int contadorAuxiliar = 0;
 		for(int i=0;i<1000;i++){
 			Grafo grafo = new Grafo(dimension, porcentaje);
 			grafo.coloreoSecuencialAleatorio();
-			vectorCantidadColores[i]=grafo.getCantidadColores();
-
-		}
-
-		for(int i=0;i<vectorCantidadColores.length;i++){
-			switch(vectorCantidadColores[i]){
+			switch(grafo.getCantidadColores()){
 			case 1:
 				vectorContadores[1]++;
 			case 2:
@@ -52,31 +47,25 @@ public class Test {
 				vectorContadores[9]++;
 			case 10:
 				vectorContadores[10]++;
-			default:
-				break;
 
 			}
-		}
-		int sumatoria = 0;
-		int contadorTotal = 0;
 
-		for(int i=0; i<vectorContadores.length;i++){
-			sumatoria +=vectorCantidadColores[i];
 		}
-		float porcentajeMinimo;
 
-		porcentajeMinimo= (vectorContadores[contadorAuxiliar]*100)/1000;
+		double porcentajeMinimo = 0.00;
+
+		
 		while(vectorContadores[contadorAuxiliar]==0){
 			contadorAuxiliar++;	
 		}
+
+		porcentajeMinimo= ((double)vectorContadores[contadorAuxiliar]*100.00)/1000.00;
+		
 		string+="La menor cantidad de colores para el análisis fue de \n"+contadorAuxiliar+" en "+vectorContadores[contadorAuxiliar]+" grafos del total de 1000";
 		string+="\nSiendo la menor cantidad con un "+porcentajeMinimo+"% del total.\n\n";
-		for(int i=0;i<vectorContadores.length;i++){
-			if(vectorContadores[i]!=0)
-				string+="Cantidad de grafos con "+i+" colores: "+vectorContadores[i]+"\n";
-		}
+	
 
-		string+="\n-------------------------------------------------\n";
+		string+="-------------------------------------------------\n";
 		return string;
 
 	}
@@ -119,7 +108,6 @@ public class Test {
 
 		System.out.println(analisisEstadistico(600, 75));
 		grafo.coloreoSecuencialAleatorio();
-		System.out.println(grafo.toString());
 		FileWriter salida= null;
 		PrintWriter pw = null;
 		try{
